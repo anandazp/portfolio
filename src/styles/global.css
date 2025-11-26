@@ -24,6 +24,16 @@
   font-display: swap;
 }
 
-html {
-  font-family: "Satoshi", sans-serif;
+@theme {
+  --*: initial;
+
+  --font-display: "Satoshi", sans-serif;
+
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+
+  --color-blacknord: #2e3440;
+  --color-whitenord: #eceff4;
+  --color-graynord: #4c566a;
+  --color-accent: #e5e5e5;
 }

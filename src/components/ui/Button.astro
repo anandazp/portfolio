@@ -1,0 +1,25 @@
+---
+const {
+  variant = "primary",
+  label,
+  type = "button",
+  href,
+} = Astro.props;
+
+const base =
+  "inline-flex items-center justify-center rounded px-4 py-2";
+
+const style =
+  variant === "primary"
+    ? "bg-blacknord text-whitenord"
+    : "bg-whitenord text-blacknord border border-blacknord";
+---
+{href ? (
+  <a href={href} class={`${base} ${style}`}>
+    {label}
+  </a>
+) : (
+  <button type={type} class={`${base} ${style}`}>
+    {label}
+  </button>
+)}

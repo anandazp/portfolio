@@ -4,6 +4,7 @@ const {
   label,
   type = "button",
   href,
+  target = null
 } = Astro.props;
 
 const base =
@@ -15,8 +16,9 @@ const style =
     : "bg-whitenord text-blacknord border border-blacknord";
 ---
 {href ? (
-  <a href={href} class={`${base} ${style}`}>
+  <a href={href} target={target} class={`${base} ${style}`}>
     {label}
+    <slot/>
   </a>
 ) : (
   <button type={type} class={`${base} ${style}`}>

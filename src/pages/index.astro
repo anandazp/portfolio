@@ -3,22 +3,70 @@ import BaseLayout from "../layouts/BaseLayout.astro"
 import Header from "../components/Header.astro"
 import Section from "../components/Section.astro"
 import Button from "../components/ui/Button.astro"
+import MiniCard from "../components/ui/MiniCard.astro"
+import Card from "../components/ui/Card.astro"
+
+const skillsAndTools = ['HTML','CSS','Javascript','TailwindCSS','PHP','Laravel', 'npm', 'Astro',
+    'MySQL','Postgresql','Git','Github', 'Bruno','Appflowy','Excalidraw', 'VSCodium'
+];
 ---
 
-<BaseLayout title="Ivan - Web Developer">
+<BaseLayout title="Ananda ZP - Web Developer">
 <Header/>
 <main>
     <section class="h-[80vh] px-5 text-blacknord flex flex-col items-start justify-center space-y-4">
         <h1 class="text-4xl font-bold">Web Developer</h1>
         <h2 class="text-2xl">Crafting web with clean and scalable code.</h2>
-        <p>Hi, I'm Ivan. A <span class="underline">passionate</span> web developer who love crafting modern, fast, and user-focused experince.</p>
+        <p>A <span class="underline">passionate</span> web developer who love crafting modern, fast, and user-focused experince.</p>
         <div class="w-full grid grid-cols-2 gap-3">
             <Button href="#projects" variant="primary" label="View My Works"></Button>
             <Button href="#projects" variant="secondary" label="Get In Touch"></Button>
         </div>
     </section>
-    <Section title="Section Title" subtitle="Section Subtitle" class="text-blacknord">
+    <Section title="About" subtitle="Get to know more about me" id="about">
+        <p>Hi, my full name is Ananda Zulvansyah Putra, and you can call me <span class="font-semibold">Ivan.</span></p>
+        <p>I'm a web developer who enjoy turning ideas into functional and user-friendly website. I work primarly with <span class="font-semibold">Laravel</span> and <span class="font-semibold">Tailwind CSS</span> . Of course, love learning new technologies that improve my workflow.</p>
+        <p>My genuine fascination with web development is rooted in a deep curiosity about the underlying tools, frameworks, and mechanisms that power the modern web. I actively seek out and explore new applications and emerging technologies that can significantly boost my productivity and enhance the development workflow.</p>
+        <p>To maintain a healthy balance away from the screen, I enjoy the simple pleasure of immersing myself in music and taking long, refreshing walks around the neighborhood.</p>
+    </Section>
 
+    <Section title="Skills & Tools" subtitle="A quick look at what i work with " id="skills">
+        <div class="flex flex-wrap space-x-2 space-y-2">
+        {skillsAndTools.map(e => (
+            <MiniCard label={e}/>
+        ))}
+        </div>
+    </Section>
+
+    <Section id="projects" title="Projects" subtitle="A collection of personal and client projects that highlight my growth">
+       <div class="grid grid-cols-1">
+        <Card>
+        <Button variant="primary" label="View Details"></Button>
+        </Card>
+       </div>
+    </Section>
+
+    <Section id="contact" title="Get In Touch" subtitle="Feel free to reach out">
+        <form action="" method="post" class="space-y-4 px-1">
+            <input type="text" name="name" placeholder="Drop your name here" class="w-full p-2 rounded shadow-blacknord ring-1 ring-blacknord/50 focus:outline-none focus:ring-2 focus:ring-blacknord focus:ring-offset-2 focus:ring-offset-whitenord" required>
+            <input type="email" name="emal" placeholder="Where i send your respond" class="w-full p-2 rounded shadow-blacknord ring-1 ring-blacknord/50 focus:outline-none focus:ring-2 focus:ring-blacknord focus:ring-offset-2 focus:ring-offset-whitenord" required>
+            <textarea name="message" id="message" placeholder="Drop your messages here" class="w-full p-2 rounded shadow-blacknord ring-1 ring-blacknord/50 focus:outline-none focus:ring-2 focus:ring-blacknord focus:ring-offset-2 focus:ring-offset-whitenord" required></textarea>
+            <div class="grid grid-cols-2 gap-3">
+                <Button type="reset" variant="secondary" label="Reset"/>
+                <Button type="submit" variant="primary" label="Send Message"/>
+            </div>
+        </form>
+    </Section>
+
+    <Section title="Find Me" subtitle="Come and see me">
+        <div class="grid grid-cols-2 gap-3  items-center">
+            <Button href="https://facebook.com" target="_blank" variant="secondary" label="Facebook">
+                <svg class="ml-1.5" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#2c2c2c" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
+            </Button>
+            <Button href="https://github.com/anandazp" target="_blank" variant="secondary" label="Github">
+                <svg class="ml-1.5" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#2c2c2c" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
+            </Button>
+        </div>
     </Section>
 </main>
 </BaseLayout>

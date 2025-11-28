@@ -9,12 +9,27 @@ import Card from "../components/ui/Card.astro"
 const skillsAndTools = ['HTML','CSS','Javascript','TailwindCSS','PHP','Laravel', 'npm', 'Astro',
     'MySQL','Postgresql','Git','Github', 'Bruno','Appflowy','Excalidraw', 'VSCodium'
 ];
+
+const projects = [
+    {   src : 'public/images/projects/project1.png',
+        title: 'Project 1',
+        description : 'merupakan sistem POS yang dibuat menggunakan framework Laravel dan TailwindCSS'
+    },
+    {   src : 'public/images/projects/project1.png',
+        title: 'Project 2',
+        description : 'sebuah landing page untuk usaha F&B, yang mengusung konsep modern dan bla bla'
+    },
+    {   src : 'public/images/projects/project1.png',
+        title: 'Project 3',
+        description : 'sass yang telah menjadi mimpi saya sejak lama'
+    },
+];
 ---
 
 <BaseLayout title="Ananda ZP - Web Developer">
 <Header/>
 <main>
-    <section class="h-[80vh] px-5 text-blacknord flex flex-col items-start justify-center space-y-4">
+    <section class="h-[80vh] px-5 text-blacknord flex flex-col items-start justify-center space-y-4" id="home">
         <h1 class="text-4xl font-bold">Web Developer</h1>
         <h2 class="text-2xl">Crafting web with clean and scalable code.</h2>
         <p>A <span class="underline">passionate</span> web developer who love crafting modern, fast, and user-focused experince.</p>
@@ -25,7 +40,7 @@ const skillsAndTools = ['HTML','CSS','Javascript','TailwindCSS','PHP','Laravel',
     </section>
     <Section title="About" subtitle="Get to know more about me" id="about">
         <p>Hi, my full name is Ananda Zulvansyah Putra, and you can call me <span class="font-semibold">Ivan.</span></p>
-        <p>I'm a web developer who enjoy turning ideas into functional and user-friendly website. I work primarly with <span class="font-semibold">Laravel</span> and <span class="font-semibold">Tailwind CSS</span> . Of course, love learning new technologies that improve my workflow.</p>
+        <p>I'm a web developer who enjoy turning ideas into functional and user-friendly website. I work primarly with <span class="font-semibold">Laravel</span> and <span class="font-semibold">Tailwind CSS</span>.</p>
         <p>My genuine fascination with web development is rooted in a deep curiosity about the underlying tools, frameworks, and mechanisms that power the modern web. I actively seek out and explore new applications and emerging technologies that can significantly boost my productivity and enhance the development workflow.</p>
         <p>To maintain a healthy balance away from the screen, I enjoy the simple pleasure of immersing myself in music and taking long, refreshing walks around the neighborhood.</p>
     </Section>
@@ -39,10 +54,14 @@ const skillsAndTools = ['HTML','CSS','Javascript','TailwindCSS','PHP','Laravel',
     </Section>
 
     <Section id="projects" title="Projects" subtitle="A collection of personal and client projects that highlight my growth">
-       <div class="grid grid-cols-1">
-        <Card>
-        <Button variant="primary" label="View Details"></Button>
+       <div class="grid grid-cols-1 gap-5">
+        {projects.map(project =>(
+            <Card src={project.src} title={project.title} description={project.description}>
+            <a href="https:://google.com" class="w-full flex items-center justify-center bg-blacknord text-whitenord rounded px-2 py-1.5 text-center">View Details 
+            <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#eceff4" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
+            </a>
         </Card>
+        ))}
        </div>
     </Section>
 
@@ -61,10 +80,10 @@ const skillsAndTools = ['HTML','CSS','Javascript','TailwindCSS','PHP','Laravel',
     <Section title="Find Me" subtitle="Come and see me">
         <div class="grid grid-cols-2 gap-3  items-center">
             <Button href="https://facebook.com" target="_blank" variant="secondary" label="Facebook">
-                <svg class="ml-1.5" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#2c2c2c" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
+                <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#2c2c2c" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
             </Button>
             <Button href="https://github.com/anandazp" target="_blank" variant="secondary" label="Github">
-                <svg class="ml-1.5" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#2c2c2c" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
+                <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#2c2c2c" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
             </Button>
         </div>
     </Section>

@@ -1,0 +1,30 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+
+import BaseLayout from "../../layouts/BaseLayout.astro"
+import Header from "../../components/Header.astro";
+
+export const getStaticPaths = (async () => {
+    const projects = await getCollection('projects')
+
+    return projects.map(entry =>({
+        params : {slug : entry.slug},
+        props : {entry},
+    }))
+    
+}) satisfies GetStaticPaths;
+
+const {entry} = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={entry.data.title}>
+    <Header/>
+    <section class="px-5 text-blacknord">
+        <a href="/src/pages/index.astro">Back to projects</a>
+        <h1 class="text-4xl font-bold">{entry.data.title}</h1>
+        <h2 class="text-xl">{entry.data.description}</h2>
+    </section>
+</BaseLayout>

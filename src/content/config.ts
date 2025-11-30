@@ -1,5 +1,4 @@
 import { defineCollection, z } from "astro:content";
-import { glob, file } from "astro/loaders";
 
 const projectsCollection = defineCollection({
   type: "content",
@@ -7,6 +6,14 @@ const projectsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
+    image: z.string(),
+    alt: z.string(),
+    tech: z.array(z.string()),
+    features: z.array(z.string()),
+    learnings: z.array(z.string()).optional(),
+    challenges: z.array(z.string()).optional(),
+    projectURL: z.string().url().optional(),
+    githubURL: z.string().url().optional(),
   }),
 });
 

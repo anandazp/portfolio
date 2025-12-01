@@ -20,9 +20,11 @@ const {title} = Astro.props;
 	function setupScrollReveal() {
     // 1. Opsi Observer
     const observerOptions = {
-      root: null, // Mengacu pada viewport browser
+      // Mengacu pada viewport browser
+      root: null, 
       rootMargin: '0px',
-      threshold: 0.1 // Animasi jalan ketika 10% elemen sudah terlihat
+      // Animasi jalan ketika 10% elemen sudah terlihat
+      threshold: 0.1 
     };
 
     // 2. Buat Observer
@@ -30,7 +32,6 @@ const {title} = Astro.props;
       entries.forEach(entry => {
         // Jika elemen masuk ke layar
         if (entry.isIntersecting) {
-			console.log("Kena !", entry.target)
           // Tambahkan class 'in-view' -> CSS akan mengubah opacity jadi 1
           entry.target.classList.add('in-view');
           

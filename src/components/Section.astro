@@ -1,12 +1,18 @@
 ---
-const {title, subtitle, id} = Astro.props;
+const {title, subtitle, id, effect = "up"} = Astro.props;
+
+const effectClass = effect === "left" ? "reveal-left" : 
+                    effect === "right" ? "reveal-right" : 
+                    "reveal-up";
 ---
 
-<section class="px-5 py-16 text-blacknord space-y-1.5" id={id}>
-    <h1 class="text-5xl font-bold ">{title}</h1>
-    <h2 class="text-xl">{subtitle}</h2>
-
-    <div class="mt-5 space-y-3">
-        <slot/>
+<section class="px-5 md:px-10 py-15 text-blacknord space-y-1.5 overflow-hidden" id={id}>
+    <div class={`reveal ${effectClass} space-y-3`}>
+        <h1 class="text-5xl md:text-6xl font-bold ">{title}</h1>
+        <h2 class="text-xl">{subtitle}</h2>
+        
+        <div class="mt-5 space-y-3">
+            <slot/>
+        </div>
     </div>
 </section>

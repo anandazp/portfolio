@@ -2,16 +2,16 @@
 import Navlink from "./ui/Navlink.astro"
 
 const links = [
-    {href : '#home', label : 'Home'},
-    {href : '#about', label : 'About'},
-    {href : '#skills', label : 'Skills'},
-    {href : '#projects', label : 'Projects'},
-    {href : '#contact', label : 'Contact'},
+    {href : '/#home', label : 'Home'},
+    {href : '/#about', label : 'About'},
+    {href : '/#skills', label : 'Skills'},
+    {href : '/#projects', label : 'Projects'},
+    {href : '/#contact', label : 'Contact'},
 ];
 
 ---
 
-<header role="heading" class="sticky top-0 z-50 px-5 py-3 md:px-10 bg-blacknord text-whitenord flex items-center justify-between">
+<header role="heading" class="sticky top-0 px-5 py-3 md:px-10 bg-blacknord text-whitenord flex items-center justify-between">
     <h1 class="logo font-semibold text-2xl text-center">Ivan</h1>
     <button id="hamburger" class="cursor-pointer">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -27,26 +27,43 @@ const links = [
 </header>
 
 <script>
-    const hamburger = document.querySelector('#hamburger')
-    const nav = document.querySelector('nav');
-    const links = document.querySelectorAll('a');
+    function setupMobileMenu(){
+        const hamburger = document.querySelector('#hamburger')
+        const header = document.querySelector('header')
+        const nav = document.querySelector('nav');
+        const links = document.querySelectorAll('a');
 
-    let isOpen = false;
-    
-    function toggleMenu(){
-        isOpen = !isOpen
-        nav?.classList.toggle('max-h-0');
-        nav?.classList.toggle('h-[90vh]');
-        nav?.classList.toggle('bg-blacknord');
-    }
+        function closeMenu() {
+            header?.classList.remove('z-50');
+            nav?.classList.add('max-h-0');
+            nav?.classList.remove('h-[90vh]', 'bg-blacknord');
+        }
 
-    hamburger?.addEventListener('click',()=>{
-        toggleMenu()
-    })
+       function toggleMenu(){
 
-    links?.forEach(link =>{
-        link.addEventListener('click',()=>{
+            const isClosed = nav?.classList.contains('max-h-0');
+            
+            if (isClosed) {
+                header?.classList.add('z-50');
+                nav?.classList.remove('max-h-0');
+                nav?.classList.add('h-[90vh]', 'bg-blacknord');
+            } else {
+            closeMenu();
+            }
+        }
+
+        hamburger?.addEventListener('click',()=>{
             toggleMenu()
         })
-    })
+
+        links?.forEach(link =>{
+            link.addEventListener('click',()=>{
+                closeMenu()
+            })
+        })
+    }
+
+    setupMobileMenu()
+    // Jalankan function saat load page, karena Astro menggunakan SPA
+    document.addEventListener('astro:page-load', setupMobileMenu)
 </script>

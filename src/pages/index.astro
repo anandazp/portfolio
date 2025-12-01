@@ -44,7 +44,7 @@ const skillsAndTools = ['HTML','CSS','Javascript','TailwindCSS','PHP','Laravel',
     </Section>
 
     <Section id="projects" title="Projects" subtitle="A collection of personal and client projects that highlight my growth">
-       <div class="grid grid-cols-1 gap-5">
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         {projects.map(project => (
             <Card src={project.data.image} alt={project.data.alt}  title={project.data.title} description={project.data.description}>
             <a href={`/projects/${project.slug}`} class="w-full flex items-center justify-center bg-blacknord text-whitenord rounded px-2 py-1.5 text-center">View Details 

@@ -1,38 +1,28 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro"
-import Header from "../components/Header.astro"
-import Section from "../components/Section.astro"
-import Button from "../components/ui/Button.astro"
-import MiniCard from "../components/ui/MiniCard.astro"
-import Card from "../components/ui/Card.astro"
+import { getCollection } from "astro:content";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Section from "../components/Section.astro";
+import Button from "../components/ui/Button.astro";
+import MiniCard from "../components/ui/MiniCard.astro";
+import Card from "../components/ui/Card.astro";
+
+const projects = await getCollection('projects');
 
 const skillsAndTools = ['HTML','CSS','Javascript','TailwindCSS','PHP','Laravel', 'npm', 'Astro',
-    'MySQL','Postgresql','Git','Github', 'Bruno','Appflowy','Excalidraw', 'VSCodium'
+    'MySQL','Postgresql','Git','Github', 'Bruno','Appflowy','Excalidraw', 
 ];
 
-const projects = [
-    {   src : 'public/images/projects/project1.png',
-        title: 'Project 1',
-        description : 'merupakan sistem POS yang dibuat menggunakan framework Laravel dan TailwindCSS'
-    },
-    {   src : 'public/images/projects/project1.png',
-        title: 'Project 2',
-        description : 'sebuah landing page untuk usaha F&B, yang mengusung konsep modern dan bla bla'
-    },
-    {   src : 'public/images/projects/project1.png',
-        title: 'Project 3',
-        description : 'sass yang telah menjadi mimpi saya sejak lama'
-    },
-];
 ---
 
 <BaseLayout title="Ananda ZP - Web Developer">
 <Header/>
 <main>
-    <section class="h-[80vh] px-5 text-blacknord flex flex-col items-start justify-center space-y-4" id="home">
-        <h1 class="text-4xl font-bold">Web Developer</h1>
+    <section class="h-[80vh] px-5 md:px-10 text-blacknord flex flex-col items-start justify-center space-y-4" id="home">
+        <h1 class="text-4xl md:text-6xl font-bold">Web Developer</h1>
         <h2 class="text-2xl">Crafting web with clean and scalable code.</h2>
-        <p>A <span class="underline">passionate</span> web developer who love crafting modern, fast, and user-focused experince.</p>
+        <p class="text-lg">A <span class="underline">passionate</span> web developer who love crafting modern, fast, and user-focused experince.</p>
         <div class="w-full grid grid-cols-2 gap-3">
             <Button href="#projects" variant="primary" label="View My Works"></Button>
             <Button href="#projects" variant="secondary" label="Get In Touch"></Button>
@@ -55,12 +45,12 @@ const projects = [
 
     <Section id="projects" title="Projects" subtitle="A collection of personal and client projects that highlight my growth">
        <div class="grid grid-cols-1 gap-5">
-        {projects.map(project =>(
-            <Card src={project.src} title={project.title} description={project.description}>
-            <a href="https:://google.com" class="w-full flex items-center justify-center bg-blacknord text-whitenord rounded px-2 py-1.5 text-center">View Details 
+        {projects.map(project => (
+            <Card src={project.data.image} alt={project.data.alt}  title={project.data.title} description={project.data.description}>
+            <a href={`/projects/${project.slug}`} class="w-full flex items-center justify-center bg-blacknord text-whitenord rounded px-2 py-1.5 text-center">View Details 
             <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#eceff4" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path></svg>
             </a>
-        </Card>
+            </Card>
         ))}
        </div>
     </Section>

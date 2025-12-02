@@ -2,7 +2,7 @@
 title: "POS System"
 slug: "pos-system"
 description: "Sistem POS yang dibuat untuk bla bla bla"
-image: "../src/images/projects/project1.png"
+image: "../../images/demo/project1.png"
 alt: "POS System"
 tech: ["Laravel", "Tailwind CSS", "Alpine JS", "Supabase"]
 features: ["CRUD Data", "Login & Logout", "Authentication", "Analytics"]

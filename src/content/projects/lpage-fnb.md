@@ -1,6 +1,5 @@
 ---
 title: "Landing Page"
-slug: "lpage-fnb"
 description: "Lnding Page yang dibuat dengan objektif utama konversi sales bla bla bla"
 image: "../../images/demo/project1.png"
 alt: "Landing Page FnB"

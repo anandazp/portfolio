@@ -1,6 +1,5 @@
 ---
 title: "POS System"
-slug: "pos-system"
 description: "Sistem POS yang dibuat untuk bla bla bla"
 image: "../../images/demo/project1.png"
 alt: "POS System"

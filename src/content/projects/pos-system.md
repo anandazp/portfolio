@@ -26,7 +26,7 @@ learnings:
     "Full-Stack Cohesion : deeper understanding of integrating Laravel back-end functionality with a lightweight, modern front-end stack (Tailwind/Alpine).",
   ]
 projectURL: "https://google.com"
-githubURL: "https://github.com/anandazp"
+githubURL: "https://github.com/anandazp/pos-fnb"
 ---
 
 This application is a custom-built Point of Sale (POS) system designed to streamline all essential operations from transactions and data recording to sales analysis for a personal small business. The project was initiated to address the limitations of existing mobile-based POS solutions, providing a robust, large-screen interface essential for efficient daily management.

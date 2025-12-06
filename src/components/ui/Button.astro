@@ -17,8 +17,8 @@ const style =
 ---
 {href ? (
   <a href={href} target={target} class={`${base} ${style}`}>
-    {label}
     <slot/>
+    {label}
   </a>
 ) : (
   <button type={type} class={`${base} ${style}`}>

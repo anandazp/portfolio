@@ -1,29 +1,5 @@
 @import "tailwindcss";
 
-/* @font-face {
-  font-family: "Satoshi";
-  src: url("/fonts/regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Satoshi";
-  src: url("/fonts/medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Satoshi";
-  src: url("/fonts/bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-} */
-
 @font-face {
   font-family: "Plus Jakarta Sans";
   src: url("/fonts/pjs-800-normal.woff2") format("woff2");
@@ -87,28 +63,26 @@
 }
 
 .reveal {
-  opacity: 0; /* Awalnya transparan */
+  opacity: 0;
   transition: all 1s ease;
-  /* transition: all 1s cubic-bezier(0.5, 0, 0, 1);  */
-  filter: blur(5px); /* Opsional: efek blur sedikit biar dramatis */
+  filter: blur(5px);
 }
 
-/* 2. State Awal: Arah datangnya darimana? */
 .reveal-up {
-  transform: translateY(120px); /* Geser ke bawah 50px */
+  transform: translateY(120px);
 }
 
 .reveal-left {
-  transform: translateX(-50px); /* Geser ke kiri 50px */
+  transform: translateX(-50px);
 }
 
 .reveal-right {
-  transform: translateX(120px); /* Geser ke kanan 50px */
+  transform: translateX(120px);
 }
 
-/* 3. State Akhir: Saat elemen masuk layar (ditambahkan oleh JS nanti) */
+/* State Akhir */
 .in-view {
   opacity: 1;
-  transform: translate(0); /* Kembali ke posisi asal */
+  transform: translate(0);
   filter: blur(0);
 }

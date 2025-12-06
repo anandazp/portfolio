@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@font-face {
+/* @font-face {
   font-family: "Satoshi";
   src: url("/fonts/regular.woff") format("woff");
   font-weight: normal;
@@ -22,10 +22,58 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
+} */
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/fonts/pjs-800-normal.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/fonts/pjs-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/fonts/pjs-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/fonts/pjs-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/fonts/pjs-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/fonts/pjs-300-normal.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
 @theme {
-  --font-display: "Satoshi", sans-serif;
+  --font-display: "Plus Jakarta Sans", sans-serif;
 
   --text-sm: 0.875rem;
   --text-base: 1rem;

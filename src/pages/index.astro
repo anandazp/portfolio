@@ -7,9 +7,6 @@ import Section from "../components/Section.astro";
 import Button from "../components/ui/Button.astro";
 import MiniCard from "../components/ui/MiniCard.astro";
 import Card from "../components/ui/Card.astro";
-import {Image} from "astro:assets";
-
-import posImage from "../images/projects/project1.png";
 
 const projects = await getCollection('projects');
 
@@ -39,7 +36,7 @@ const skillsAndTools = ['HTML','CSS','Javascript','TailwindCSS','PHP','Laravel',
     </Section>
 
     <Section title="Skills & Tools" subtitle="A quick look at what i work with " id="skills">
-        <div class="flex flex-wrap space-x-2 lg:space-x4 space-y-2 lg:space-y-4">
+        <div class="flex flex-wrap gap-2">
         {skillsAndTools.map(e => (
             <MiniCard label={e}/>
         ))}

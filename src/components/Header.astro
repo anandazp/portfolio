@@ -2,11 +2,11 @@
 import Navlink from "./ui/Navlink.astro"
 
 const links = [
-    {href : '/#home', label : 'Home'},
-    {href : '/#about', label : 'About'},
-    {href : '/#skills', label : 'Skills'},
-    {href : '/#projects', label : 'Projects'},
-    {href : '/#contact', label : 'Contact'},
+    {href : "/#home", label : "Home"},
+    {href : "/#about", label : "About"},
+    {href : "/#skills", label : "Skills"},
+    {href : "/#projects", label : "Projects"},
+    {href : "/#contact", label : "Contact"},
 ];
 
 ---
@@ -19,10 +19,17 @@ const links = [
       </svg>
     </button>
     
-    <nav class="lg:hidden absolute top-full left-0 right-0 max-h-0 overflow-hidden px-5 py-3 text-center space-y-20 transition-all duration-300 text-whitenord">
-        {links.map(link => (
-            <Navlink href={link.href} label={link.label} />
-        ))}
+    <nav class="lg:hidden fixed top-[56px] left-0 right-0 w-full h-[calc(100vh-64px)]
+           bg-blackdark
+           opacity-0 invisible translate-y-[-10px] pointer-events-none
+           transition-all duration-300 ease-in-out
+           overflow-y-auto" id="mobile-nav">
+
+        <div class="flex flex-col justify-start items-center min-h-full py-10 gap-10 px-5">
+            {links.map(link => (
+                <Navlink href={link.href} label={link.label} />
+            ))}
+        </div>
     </nav>
 
     <nav class="hidden lg:flex items-center gap-8">
@@ -36,26 +43,24 @@ const links = [
     function setupMobileMenu(){
         const hamburger = document.querySelector('#hamburger')
         const header = document.querySelector('header')
-        const nav = document.querySelector('nav');
-        const links = document.querySelectorAll('a');
+        const mobileNav = document.querySelector('#mobile-nav');
+        const links = document.querySelectorAll('#mobile-nav a');
 
-        function closeMenu() {
-            header?.classList.remove('z-50');
-            nav?.classList.add('max-h-0');
-            nav?.classList.remove('h-[90vh]', 'bg-blacknord');
+        if (!hamburger || !mobileNav) return;
+
+        function openMenu() {
+            mobileNav.classList.remove('opacity-0', 'invisible', 'translate-y-[-10px]', 'pointer-events-none');
+            mobileNav.classList.add('opacity-100', 'visible', 'translate-y-0', 'pointer-events-auto');
         }
 
-       function toggleMenu(){
+        function closeMenu() {
+            mobileNav.classList.remove('opacity-100', 'visible', 'translate-y-0', 'pointer-events-auto');
+            mobileNav.classList.add('opacity-0', 'invisible', 'translate-y-[-10px]', 'pointer-events-none');
+        }
 
-            const isClosed = nav?.classList.contains('max-h-0');
-            
-            if (isClosed) {
-                header?.classList.add('z-50');
-                nav?.classList.remove('max-h-0');
-                nav?.classList.add('h-[90vh]', 'bg-blacknord');
-            } else {
-            closeMenu();
-            }
+        function toggleMenu() {
+            const isHidden = mobileNav.classList.contains('opacity-0');
+            isHidden ? openMenu() : closeMenu();
         }
 
         hamburger?.addEventListener('click',()=>{

@@ -1,57 +1,63 @@
 ---
-import "../styles/global.css"; 
-const {title} = Astro.props;
+import "../styles/global.css";
+const { title } = Astro.props;
 ---
 
 <html lang="en" class="scroll-smooth">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body class="font-display">
-		<slot></slot>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="">
+    <slot />
+  </body>
 </html>
 
 <script>
-	function setupScrollReveal() {
+  function setupScrollReveal() {
     // 1. Opsi Observer
     const observerOptions = {
       // Mengacu pada viewport browser
-      root: null, 
-      rootMargin: '0px',
+      root: null,
+      rootMargin: "0px",
       // Animasi jalan ketika 10% elemen sudah terlihat
-      threshold: 0.1 
+      threshold: 0.1,
     };
 
     // 2. Buat Observer
     const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         // Jika elemen masuk ke layar
         if (entry.isIntersecting) {
           // Tambahkan class 'in-view' -> CSS akan mengubah opacity jadi 1
-          entry.target.classList.add('in-view');
-          
+          entry.target.classList.add("in-view");
+
           // (Opsional) Hentikan observasi jika ingin animasi cuma sekali
-          // observer.unobserve(entry.target); 
-        } 
+          // observer.unobserve(entry.target);
+        }
         // else {
-          // Jika mau animasi hilang lagi saat di-scroll keluar, 
-          // nyalakan baris di bawah ini:
-          // entry.target.classList.remove('in-view');
+        // Jika mau animasi hilang lagi saat di-scroll keluar,
+        // nyalakan baris di bawah ini:
+        // entry.target.classList.remove('in-view');
         // }
       });
     }, observerOptions);
 
     // 3. Targetkan semua elemen yang punya class '.reveal'
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach(el => observer.observe(el));
+    const revealElements = document.querySelectorAll(".reveal");
+    revealElements.forEach((el) => observer.observe(el));
   }
 
   // Jalankan saat load awal & pindah halaman (Astro View Transitions)
   setupScrollReveal();
-  document.addEventListener('astro:page-load', setupScrollReveal);
+  document.addEventListener("astro:page-load", setupScrollReveal);
 </script>

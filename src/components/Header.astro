@@ -1,80 +1,113 @@
 ---
-import Navlink from "./ui/Navlink.astro"
+import Navlink from "./ui/Navlink.astro";
 
 const links = [
-    {href : "/#home", label : "Home"},
-    {href : "/#about", label : "About"},
-    {href : "/#skills", label : "Skills"},
-    {href : "/#projects", label : "Projects"},
-    {href : "/#contact", label : "Contact"},
+  { href: "/", label: "Home" },
+  { href: "/#about", label: "About" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#contact", label: "Contact" },
 ];
-
 ---
 
-<header class="sticky top-0 z-50 px-5 py-3 md:px-10 bg-blackdark text-whitelight flex items-center justify-between">
-    <h1 class="logo font-semibold text-2xl text-center">Ananda ZP</h1>
-    <button id="hamburger" class="cursor-pointer lg:hidden">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-      </svg>
-    </button>
-    
-    <nav class="lg:hidden fixed top-[56px] left-0 right-0 w-full h-[calc(100vh-64px)]
+<header
+  class="sticky top-0 z-50 px-5 py-3 md:px-10 bg-blackdark text-whitelight flex items-center justify-between"
+>
+  <h1 class="logo font-semibold text-2xl text-center">Ananda ZP</h1>
+  <button id="hamburger" class="cursor-pointer lg:hidden">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+    </svg>
+  </button>
+
+  <!-- Mobile Nav -->
+  <nav
+    class="lg:hidden fixed top-[56px] left-0 right-0 w-full h-[calc(100vh-64px)]
            bg-blackdark
            opacity-0 invisible translate-y-[-10px] pointer-events-none
            transition-all duration-300 ease-in-out
-           overflow-y-auto" id="mobile-nav">
+           overflow-y-auto"
+    id="mobile-nav"
+  >
+    <div
+      class="flex flex-col justify-start items-center min-h-full py-10 gap-10 px-5"
+    >
+      {links.map((link) => <Navlink href={link.href} label={link.label} />)}
+    </div>
+  </nav>
 
-        <div class="flex flex-col justify-start items-center min-h-full py-10 gap-10 px-5">
-            {links.map(link => (
-                <Navlink href={link.href} label={link.label} />
-            ))}
-        </div>
-    </nav>
-
-    <nav class="hidden lg:flex items-center gap-8">
-        {links.map(link => (
-            <Navlink href={link.href} label={link.label} />
-        ))}
-    </nav>
+  <!-- Desktop Nav -->
+  <nav class="hidden lg:flex items-center gap-8">
+    {links.map((link) => <Navlink href={link.href} label={link.label} />)}
+  </nav>
 </header>
 
 <script>
-    function setupMobileMenu(){
-        const hamburger = document.querySelector('#hamburger')
-        const header = document.querySelector('header')
-        const mobileNav = document.querySelector('#mobile-nav');
-        const links = document.querySelectorAll('#mobile-nav a');
+  function setupMobileMenu() {
+    const hamburger = document.querySelector("#hamburger");
+    const header = document.querySelector("header");
+    const mobileNav = document.querySelector("#mobile-nav");
+    const links = document.querySelectorAll("#mobile-nav a");
 
-        if (!hamburger || !mobileNav) return;
+    if (!hamburger || !mobileNav) return;
 
-        function openMenu() {
-            mobileNav.classList.remove('opacity-0', 'invisible', 'translate-y-[-10px]', 'pointer-events-none');
-            mobileNav.classList.add('opacity-100', 'visible', 'translate-y-0', 'pointer-events-auto');
-        }
-
-        function closeMenu() {
-            mobileNav.classList.remove('opacity-100', 'visible', 'translate-y-0', 'pointer-events-auto');
-            mobileNav.classList.add('opacity-0', 'invisible', 'translate-y-[-10px]', 'pointer-events-none');
-        }
-
-        function toggleMenu() {
-            const isHidden = mobileNav.classList.contains('opacity-0');
-            isHidden ? openMenu() : closeMenu();
-        }
-
-        hamburger?.addEventListener('click',()=>{
-            toggleMenu()
-        })
-
-        links?.forEach(link =>{
-            link.addEventListener('click',()=>{
-                closeMenu()
-            })
-        })
+    function openMenu() {
+      mobileNav?.classList.remove(
+        "opacity-0",
+        "invisible",
+        "translate-y-[-10px]",
+        "pointer-events-none"
+      );
+      mobileNav?.classList.add(
+        "opacity-100",
+        "visible",
+        "translate-y-0",
+        "pointer-events-auto"
+      );
     }
 
-    setupMobileMenu()
-    // Jalankan function saat load page, karena Astro menggunakan SPA
-    document.addEventListener('astro:page-load', setupMobileMenu)
+    function closeMenu() {
+      mobileNav?.classList.remove(
+        "opacity-100",
+        "visible",
+        "translate-y-0",
+        "pointer-events-auto"
+      );
+      mobileNav?.classList.add(
+        "opacity-0",
+        "invisible",
+        "translate-y-[-10px]",
+        "pointer-events-none"
+      );
+    }
+
+    function toggleMenu() {
+      const isHidden = mobileNav?.classList.contains("opacity-0");
+      isHidden ? openMenu() : closeMenu();
+    }
+
+    hamburger?.addEventListener("click", () => {
+      toggleMenu();
+    });
+
+    links?.forEach((link) => {
+      link.addEventListener("click", () => {
+        closeMenu();
+      });
+    });
+  }
+
+  setupMobileMenu();
+  // Jalankan function saat load page, karena Astro menggunakan SPA
+  document.addEventListener("astro:page-load", setupMobileMenu);
 </script>

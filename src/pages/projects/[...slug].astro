@@ -41,7 +41,11 @@ const { Content } = await render(entry);
       >
       Back to projects</a
     >
-    <Image src={entry.data.image} alt={entry.data.alt} class="rounded mt-2" />
+    <Image
+      src={entry.data.image}
+      alt={entry.data.alt}
+      class="rounded mt-2 lg:h-[600px] object-cover"
+    />
     <h1 class="text-4xl lg:text-5xl font-semibold mt-5 mb-3">
       {entry.data.title}
     </h1>
@@ -64,7 +68,7 @@ const { Content } = await render(entry);
       <div>
         <h3 class="text-3xl font-medium mt-5 mb-3">Challenges</h3>
         <ol class="list-disc px-5 space-y-2">
-          {entry.data.challenges.map((challenge) => <li>{challenge}</li>)}
+          {entry.data.challenges?.map((challenge) => <li>{challenge}</li>)}
         </ol>
       </div>
     </section>
@@ -72,7 +76,7 @@ const { Content } = await render(entry);
       <div>
         <h3 class="text-3xl font-medium mt-5 mb-3">Learnings</h3>
         <ol class="list-disc px-5 space-y-2">
-          {entry.data.learnings.map((learning) => <li>{learning}</li>)}
+          {entry.data.learnings?.map((learning) => <li>{learning}</li>)}
         </ol>
       </div>
     </section>

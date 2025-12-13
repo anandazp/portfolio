@@ -1,7 +1,7 @@
 ---
 title: "POS System"
 description: "A full-stack POS web app to simplify business financial recording and inventory control."
-image: "../../images/demo/project1.png"
+image: "../../images/demo/posfnb.webp"
 alt: "POS System"
 tech: ["Laravel", "Tailwind CSS", "Alpine JS", "Supabase"]
 features:

@@ -51,6 +51,7 @@
 } */
 
 @theme {
+  --font-inter: "Inter", sans-serif;
   --text-sm: 0.875rem;
   --text-base: 1rem;
 
@@ -63,7 +64,8 @@
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  /* font-family: "Inter", sans-serif; */
+  font-family: "Inter Tight", sans-serif;
 }
 
 .reveal {

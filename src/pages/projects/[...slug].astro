@@ -49,25 +49,25 @@ const { Content } = await render(entry);
     <h1 class="text-4xl lg:text-5xl font-semibold mt-5 mb-3">
       {entry.data.title}
     </h1>
-    <h2 class="text-lg lg:text-xl">{entry.data.description}</h2>
+    <h2 class="text-lg lg:text-xl font-inter">{entry.data.description}</h2>
     <div>
-      <h3 class="text-3xl font-medium mt-5 mb-3">Overview</h3>
+      <h3 class="text-3xl font-inter font-medium mt-5 mb-3">Overview</h3>
       <Content />
     </div>
     <h3 class="text-3xl font-medium mt-5 mb-3">Tech Stack</h3>
-    <div class="flex flex-wrap gap-2">
+    <div class="flex flex-wrap gap-2 font-inter">
       {entry.data.tech.map((t) => <MiniCard label={t} />)}
     </div>
     <section class="grid grid-cols-1 md:grid-cols-2">
       <div>
         <h3 class="text-3xl font-medium mt-5 mb-3">Features</h3>
-        <ol class="list-disc px-5 space-y-2">
+        <ol class="list-disc px-5 space-y-2 font-inter">
           {entry.data.features.map((feature) => <li>{feature}</li>)}
         </ol>
       </div>
       <div>
         <h3 class="text-3xl font-medium mt-5 mb-3">Challenges</h3>
-        <ol class="list-disc px-5 space-y-2">
+        <ol class="list-disc px-5 space-y-2 font-inter">
           {entry.data.challenges?.map((challenge) => <li>{challenge}</li>)}
         </ol>
       </div>
@@ -75,12 +75,12 @@ const { Content } = await render(entry);
     <section class="grid grid-cols-1">
       <div>
         <h3 class="text-3xl font-medium mt-5 mb-3">Learnings</h3>
-        <ol class="list-disc px-5 space-y-2">
+        <ol class="list-disc px-5 space-y-2 font-inter">
           {entry.data.learnings?.map((learning) => <li>{learning}</li>)}
         </ol>
       </div>
     </section>
-    <section class="lg:w-1/4 grid grid-cols-2 mt-5 gap-3">
+    <section class="lg:w-1/4 grid grid-cols-2 mt-5 gap-3 font-inter">
       <Button
         href={entry.data.projectURL}
         target="_blank"

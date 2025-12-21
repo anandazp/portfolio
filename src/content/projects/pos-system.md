@@ -25,7 +25,7 @@ learnings:
     "Data Optimization : gained experience in implementing client-side filtering techniques for performance enhancement and reduced server load.",
     "Full-Stack Cohesion : deeper understanding of integrating Laravel back-end functionality with a lightweight, modern front-end stack (Tailwind/Alpine).",
   ]
-projectURL: "https://google.com"
+projectURL: "https://github.com/anandazp/pos-fnb"
 githubURL: "https://github.com/anandazp/pos-fnb"
 ---
 

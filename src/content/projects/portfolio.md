@@ -1,7 +1,7 @@
 ---
 title: "Personal Portfolio"
 description: "An minimalistic personal portfolio website to showcase skills and professional journey."
-image: "../../images/demo/personalportfolio.webp"
+image: "../../images/demo/portfolio.webp"
 alt: "Personal Portfolio"
 tech: ["Astro", "Tailwind CSS"]
 features:

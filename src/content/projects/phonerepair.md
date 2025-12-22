@@ -16,7 +16,7 @@ challenges:
     "Implementing Netlify Identity for auth in admin panel.",
   ]
 learnings: ["Integration with git-based headless CMS with Astro."]
-projectURL: "https://happyeat.netlify.app/"
+projectURL: "https://fixnfit.netlify.app/"
 githubURL: "https://github.com/anandazp"
 ---
 

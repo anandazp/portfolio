@@ -8,7 +8,7 @@ const { src, alt, title, description } = Astro.props;
   <Image src={src} alt={alt} class="w-full rounded" />
 
   <div class="w-full px-3 md:px-5 space-y-3">
-    <p class="font-medium text-xl md:text-2xl">{title}</p>
+    <p class="font-medium text-xl md:text-2xl lg:text-3xl">{title}</p>
     <p class="font-inter">{description}</p>
     <slot />
   </div>

@@ -1,23 +1,29 @@
 ---
-const { title, subtitle, id, effect = "up" } = Astro.props;
+interface Props {
+  title?: string;
+  baseClassesTitle?: string;
+  subtitle?: string;
+  id?: string;
+  extraClasses?: string;
+  extraClassesTitle?: string;
+}
 
-const effectClass =
-  effect === "left"
-    ? "reveal-left"
-    : effect === "right"
-      ? "reveal-right"
-      : "reveal-up";
+const { title, subtitle, id, extraClasses, extraClassesTitle } = Astro.props;
+
+const baseClasses =
+  "min-h-fit space-y-1.5 px-5 md:px-10 py-10 overflow-y-auto overscroll-y-contain";
+const baseClassesTitle =
+  "text-2xl md:text-6xl lg:text-2xl font-medium mb-2 px-3 w-fit rounded-4xl border";
 ---
 
-<section
-  class="px-5 md:px-10 pb-20 text-blackdark space-y-1.5 overflow-hidden"
-  id={id}
->
-  <div class={`reveal ${effectClass} space-y-3`}>
-    <h1 class="text-5xl md:text-6xl lg:text-7xl font-semibold">{title}</h1>
-    <h2 class="text-lg lg:text-2xl">{subtitle}</h2>
+<section class:list={[baseClasses, extraClasses]} id={id}>
+  <div class="max-w-6xl w-full h-full">
+    <h1 class:list={[baseClassesTitle, extraClassesTitle]}>
+      {title}
+    </h1>
+    <h2 class="mt-4 text-4xl lg:text-6xl">{subtitle}</h2>
 
-    <div class="mt-5 space-y-3">
+    <div class="mt-3 space-y-3">
       <slot />
     </div>
   </div>

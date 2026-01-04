@@ -1,6 +1,6 @@
 ---
 title: "FixnFit"
-description: "A landing page for a phone repair service, built with Astro for speed, Tailwind CSS, and integrated with Decap for seamless content management."
+description: "A landing page for a phone repair service, built with Astro, Tailwind and Decap CMS for content management."
 image: "../../images/demo/servishape.webp"
 alt: "FixnFit"
 tech: ["Astro", "Tailwind CSS", "Decap"]

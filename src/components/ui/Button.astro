@@ -5,6 +5,7 @@ const {
   type = "button",
   href,
   target = null,
+  extraClasses,
 } = Astro.props;
 
 const base =
@@ -18,7 +19,7 @@ const style =
 
 {
   href ? (
-    <a href={href} target={target} class={`${base} ${style}`}>
+    <a href={href} target={target} class={`${base} ${style} ${extraClasses}`}>
       <slot />
       {label}
     </a>

@@ -68,5 +68,5 @@ body {
 }
 
 .content {
-  @apply font-inter text-3xl lg:text-5xl py-1;
+  @apply font-inter text-3xl lg:text-5xl py-1 leading-10 lg:leading-14;
 }

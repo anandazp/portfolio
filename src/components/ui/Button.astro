@@ -4,24 +4,27 @@ const {
   label,
   type = "button",
   href,
-  target = null
+  target = null,
 } = Astro.props;
 
 const base =
-  "inline-flex items-center justify-center rounded px-4 py-2";
+  "font-inter inline-flex items-center justify-center rounded px-4 py-2";
 
 const style =
   variant === "primary"
     ? "bg-blackdark text-whitelight"
-    : "bg-whitelight text-blackdark border border-blackdark";
+    : "bg-transparent text-blackdark border border-blackdark transition-all :hover:bg-blackdark :hover:text-whitelight";
 ---
-{href ? (
-  <a href={href} target={target} class={`${base} ${style}`}>
-    <slot/>
-    {label}
-  </a>
-) : (
-  <button type={type} class={`${base} ${style}`}>
-    {label}
-  </button>
-)}
+
+{
+  href ? (
+    <a href={href} target={target} class={`${base} ${style}`}>
+      <slot />
+      {label}
+    </a>
+  ) : (
+    <button type={type} class={`${base} ${style}`}>
+      {label}
+    </button>
+  )
+}

@@ -20,8 +20,8 @@ const style =
 {
   href ? (
     <a href={href} target={target} class={`${base} ${style} ${extraClasses}`}>
-      <slot />
       {label}
+      <slot />
     </a>
   ) : (
     <button type={type} class={`${base} ${style}`}>

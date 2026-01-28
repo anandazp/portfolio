@@ -60,6 +60,7 @@ const contacts = [
             height={320}
             loading={"lazy"}
             class="rounded-full border-4 border-blackdark"
+            fetchpriority={"high"}
           />
         </div>
 
@@ -169,7 +170,7 @@ const contacts = [
       title="Projects"
       extraClasses="top-60 bg-white-light text-blackdark"
     >
-      <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10">
         {
           projects.map((project) => (
             <Card

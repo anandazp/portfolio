@@ -1,18 +1,8 @@
 @import "tailwindcss";
 
-/* @font-face {
-  font-family: "Mona Sans";
-  src: url("/fonts/mona-sans-700-normal.woff2") format("woff2");
-  font-optical-sizing: auto;
-  font-variation-settings: "wdth" 100;
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 @font-face {
-  font-family: "Mona Sans";
-  src: url("/fonts/mona-sans-600-normal.woff2") format("woff2");
+  font-family: "Inter Tight";
+  src: url("/fonts/inter-tight-semibold.woff2") format("woff2");
   font-optical-sizing: auto;
   font-variation-settings: "wdth" 100;
   font-weight: 600;
@@ -21,8 +11,8 @@
 }
 
 @font-face {
-  font-family: "Mona Sans";
-  src: url("/fonts/mona-sans-500-normal.woff2") format("woff2");
+  font-family: "Inter Tight";
+  src: url("/fonts/inter-tight-medium.woff2") format("woff2");
   font-optical-sizing: auto;
   font-variation-settings: "wdth" 100;
   font-weight: 500;
@@ -30,28 +20,9 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Mona Sans";
-  src: url("/fonts/mona-sans-400-normal.woff2") format("woff2");
-  font-optical-sizing: auto;
-  font-variation-settings: "wdth" 100;
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Mona Sans";
-  src: url("/fonts/mona-sans-300-normal.woff2") format("woff2");
-  font-optical-sizing: auto;
-  font-variation-settings: "wdth" 100;
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-} */
-
 @theme {
   --font-inter: "Inter", sans-serif;
+  --font-inter-display: "Inter Display", sans-serif;
   --text-sm: 0.875rem;
   --text-base: 1rem;
 

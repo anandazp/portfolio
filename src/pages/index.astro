@@ -58,8 +58,8 @@ const contacts = [
             alt="avatar"
             width={320}
             height={320}
-            loading={"lazy"}
             class="rounded-full border-4 border-blackdark"
+            loading={"eager"}
             fetchpriority={"high"}
           />
         </div>
@@ -68,7 +68,7 @@ const contacts = [
           <h1 class="text-4xl md:text-6xl lg:text-8xl font-semibold mb-1">
             Ivan
           </h1>
-          <h2 class="text-xl lg:text-2xl">
+          <h2 class="text-xl lg:text-2xl font-inter">
             Web Developer <br class="lg:hidden" /> from Pasuruan, Indonesia.
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -170,7 +170,7 @@ const contacts = [
       title="Projects"
       extraClasses="top-60 bg-white-light text-blackdark"
     >
-      <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10">
+      <div class="w-full h-auto object-cover grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10">
         {
           projects.map((project) => (
             <Card

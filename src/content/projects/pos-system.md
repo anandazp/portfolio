@@ -1,5 +1,6 @@
 ---
 title: "POS System"
+order: 1
 description: "A full-stack POS web app to simplify business financial recording and inventory control."
 image: "../../images/demo/posfnb.webp"
 alt: "POS System"

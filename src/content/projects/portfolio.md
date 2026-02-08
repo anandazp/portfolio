@@ -1,5 +1,6 @@
 ---
 title: "Personal Portfolio"
+order: 0
 description: "An minimalistic personal portfolio website to showcase skills and professional journey."
 image: "../../images/demo/portfolio.webp"
 alt: "Personal Portfolio"

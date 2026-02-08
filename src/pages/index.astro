@@ -8,7 +8,13 @@ import Section from "../components/Section.astro";
 import Button from "../components/ui/Button.astro";
 import Card from "../components/ui/Card.astro";
 
-const projects = await getCollection("projects");
+const projects = await getCollection("projects", ({ data }) => {
+  return data.order > 0;
+});
+
+const sortedProjects = projects.sort((a, b) => {
+  return (b.data.order || 0) - (a.data.order || 0);
+});
 
 const skillsAndTools = [
   "Javascript",
@@ -155,7 +161,7 @@ const contacts = [
     >
       {
         skillsAndTools.map((s) => (
-          <div class="duration-300 transition-transform hover:translate-x-5 hover:bg-blackdark/20">
+          <div class="duration-300 transition-transform hover:translate-x-5">
             <p class="content">{s}</p>
             <hr />
           </div>
@@ -170,7 +176,9 @@ const contacts = [
       title="Projects"
       extraClasses="top-60 bg-white-light text-blackdark"
     >
-      <div class="w-full h-auto object-cover grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10">
+      <div
+        class="w-full h-auto object-cover grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10"
+      >
         {
           projects.map((project) => (
             <Card
@@ -222,11 +230,10 @@ const contacts = [
             <a
               href={contact.url}
               target="_blank"
-              class="block text-xl lg:text-2xl after:content-['_↗'] lg:w-fit transition-all duration-300 hover:border-b hover:border-b-whitelight active:border-b-whitelight"
+              class="block text-xl lg:text-2xl after:content-['_↗'] lg:w-fit duration-300 transition-transform hover:translate-x-5"
             >
               {contact.platform}
             </a>
-            // <hr/>
           ))
         }
       </div>

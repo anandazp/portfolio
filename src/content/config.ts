@@ -14,6 +14,7 @@ const projectsCollection = defineCollection({
       challenges: z.array(z.string()).optional(),
       projectURL: z.string().url().optional(),
       githubURL: z.string().url().optional(),
+      order: z.number().optional(),
     }),
 });
 

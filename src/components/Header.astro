@@ -40,7 +40,7 @@ const links = [
            overflow-y-auto"
     id="mobile-nav"
   >
-    <div class="flex flex-col justify-start min-h-full pt-16 pb-10 gap-3 px-5">
+    <div class="flex flex-col justify-start min-h-full pt-16 pb-10 gap-5 px-5">
       {links.map((link) => <Navlink href={link.href} label={link.label} />)}
     </div>
   </nav>
@@ -54,7 +54,7 @@ const links = [
     href="mailto:anandazulvansyahputra@gmail.com"
     target="_blank"
     label="Send Message"
-    extraClasses="bg-whitelight text-blackdark! px-5"
+    extraClasses="hidden! lg:block! bg-whitelight text-blackdark! px-5"
   />
 </header>
 

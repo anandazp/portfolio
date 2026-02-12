@@ -28,7 +28,7 @@
 
   --color-blacknord: #2e3440;
   --color-whitenord: #eceff4;
-  --color-blackdark: #222222;
+  --color-blackdark: #141414;
   --color-whitelight: #fafafa;
   --color-graynord: #4c566a;
   --color-accent: #e5e5e5;
@@ -39,5 +39,5 @@ body {
 }
 
 .content {
-  @apply font-inter text-3xl lg:text-5xl py-1 leading-10 lg:leading-14;
+  @apply font-inter text-2xl lg:text-4xl py-1 lg:leading-12;
 }

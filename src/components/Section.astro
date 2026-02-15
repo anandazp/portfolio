@@ -12,7 +12,7 @@ const { title, subtitle, id, extraClasses, extraClassesTitle } = Astro.props;
 
 const baseClasses =
   "min-h-fit lg:min-h-screen space-y-1.5 max-w-xs md:max-w-3xl lg:max-w-6xl mx-auto py-20 overflow-y-auto";
-const baseClassesTitle = "text-3xl lg:text-5xl font-semibold mb-2 uppercase";
+const baseClassesTitle = "text-3xl lg:text-5xl font-semibold mb-2";
 ---
 
 <section class:list={[baseClasses, extraClasses]} id={id}>

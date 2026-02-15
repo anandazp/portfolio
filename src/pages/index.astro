@@ -50,7 +50,7 @@ const contacts = [
 
 <BaseLayout title="Ananda ZP - Web Developer">
   <Header />
-  <main class="relative">
+  <main class="">
     <!-- Hero -->
     <div class="bg-whitelight text-blackdark">
       <section
@@ -82,7 +82,7 @@ const contacts = [
               variant="primary"
               label="Send Message"
               target="_blank"
-              extraClasses="w-full lg:w-1/2"
+              extraClasses="w-full lg:w-fit lg:px-10"
             />
           </div>
         </div>
@@ -181,7 +181,7 @@ const contacts = [
       <Section
         title="Skills & Tools"
         id="skills"
-        extraClassesTitle="border-whitelight"
+        extraClassesTitle="border-whitelight overflow-hidden"
       >
         {
           skillsAndTools.map((s) => (
@@ -199,7 +199,7 @@ const contacts = [
     <Section
       id="projects"
       title="Projects"
-      extraClasses="top-60 bg-white-light text-blackdark"
+      extraClasses="bg-white-light text-blackdark"
     >
       <div
         class="w-full h-auto object-cover grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10"
@@ -247,7 +247,7 @@ const contacts = [
         id="contact"
         title="Get In Touch"
         subtitle="Feel free to reach out"
-        extraClasses="top-100 "
+        extraClasses=""
       >
         <!-- Mobile and Tablet -->
         <div class="mt-6 space-y-3">

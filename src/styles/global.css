@@ -39,5 +39,5 @@ body {
 }
 
 .content {
-  @apply font-inter text-2xl lg:text-4xl py-1 lg:leading-12;
+  @apply font-inter text-2xl lg:text-3xl py-1 lg:leading-12;
 }

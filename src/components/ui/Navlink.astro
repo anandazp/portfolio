@@ -2,13 +2,13 @@
 interface Props {
   href: string;
   label: string;
+  extraClasses?: string;
 }
 
-const { href, label } = Astro.props;
+const { href, label, extraClasses } = Astro.props;
+const baseClasses = `inline-block font-inter text-4xl lg:text-xl cursor-pointer
+  relative w-fit after:absolute after:-bottom-1 after:left-0 after:h-[2px] hover:after:w-1/2 after:bg-white after:content-[''] after:transition-all
+  after:duration-300`;
 ---
 
-<a
-  href={href}
-  class="inline-block text-4xl font-medium lg:text-xl lg:hover:underline lg:hover:underline-offset-8 cursor-pointer"
-  >{label}</a
->
+<a href={href} class:list={[baseClasses, extraClasses]}>{label}</a>

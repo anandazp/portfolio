@@ -7,8 +7,15 @@ import Header from "../components/Header.astro";
 import Section from "../components/Section.astro";
 import Button from "../components/ui/Button.astro";
 import Card from "../components/ui/Card.astro";
+import Avatar from "../images/avatar.webp";
 
-const projects = await getCollection("projects");
+const projects = await getCollection("projects", ({ data }) => {
+  return data.order > 0;
+});
+
+const sortedProjects = projects.sort((a, b) => {
+  return (b.data.order || 0) - (a.data.order || 0);
+});
 
 const skillsAndTools = [
   "Javascript",
@@ -43,62 +50,44 @@ const contacts = [
 
 <BaseLayout title="Ananda ZP - Web Developer">
   <Header />
-  <main class="relative">
+  <main class="">
     <!-- Hero -->
-    <section
-      class="h-screen max-w-sm md:max-w-3xl lg:max-w-7xl mx-auto text-blackdark flex flex-col items-center justify-center text-center md:text-left space-y-5 lg:border-b lg:border-b-blackdark"
-      id="home"
-    >
-      <div
-        class="lg:w-full grid grid-cols-1 md:grid-cols-2 items-center gap-3 md:gap-5 lg:gap-10"
+    <div class="bg-whitelight text-blackdark">
+      <section
+        class="h-[70dvh] lg:h-screen max-w-xs md:max-w-3xl lg:max-w-6xl mx-auto flex flex-col items-center justify-center text-center lg:text-left space-y-5"
+        id="home"
       >
-        <div class="grid justify-center">
-          <Image
-            src="/avatar.svg"
-            alt="avatar"
-            width={320}
-            height={320}
-            class="rounded-full border-4 border-blackdark"
-            loading={"eager"}
-            fetchpriority={"high"}
-          />
-        </div>
-
-        <div class="space-y-3 lg:space-y-5">
-          <h1 class="text-4xl md:text-6xl lg:text-8xl font-semibold mb-1">
-            Ivan
-          </h1>
-          <h2 class="text-xl lg:text-2xl font-inter">
-            Web Developer <br class="lg:hidden" /> from Pasuruan, Indonesia.
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <Button
-              href="#projects"
-              variant="secondary"
-              label="View My Works"
+        <div
+          class="lg:w-full grid grid-cols-1 lg:grid-cols-2 items-center gap-3 md:gap-5 lg:gap-10"
+        >
+          <div class="grid justify-center">
+            <Image
+              src={Avatar}
+              alt="Avatar Ananda ZP"
+              class="w-full h-[300px] lg:h-[700px]"
+              loading={"eager"}
+              fetchpriority={"high"}
             />
+          </div>
+
+          <div class="space-y-3 lg:space-y-5">
+            <h1 class="text-2xl md:text-6xl lg:text-7xl font-semibold mb-1">
+              Ananda Zulvansyah Putra
+            </h1>
+            <h2 class="text-xl font-inter">
+              Web Developer <br class="lg:hidden" /> from Pasuruan, Indonesia.
+            </h2>
             <Button
               href="mailto:anandazulvansyahputra@gmail.com"
               variant="primary"
               label="Send Message"
               target="_blank"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                fill="#fafafa"
-                viewBox="0 0 256 256"
-                class="ml-2"
-                ><path
-                  d="M225.88,30.12a13.83,13.83,0,0,0-13.7-3.58l-.11,0L20.14,84.77A14,14,0,0,0,18,110.85l85.56,41.64L145.12,238a13.87,13.87,0,0,0,12.61,8c.4,0,.81,0,1.21-.05a13.9,13.9,0,0,0,12.29-10.09l58.2-191.93,0-.11A13.83,13.83,0,0,0,225.88,30.12Zm-8,10.4L159.73,232.43l0,.11a2,2,0,0,1-3.76.26l-40.68-83.58,49-49a6,6,0,1,0-8.49-8.49l-49,49L23.15,100a2,2,0,0,1,.31-3.74l.11,0L215.48,38.08a1.94,1.94,0,0,1,1.92.52A2,2,0,0,1,217.92,40.52Z"
-                ></path></svg
-              >
-            </Button>
+              extraClasses="w-full lg:w-fit lg:px-10"
+            />
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- About Me -->
     <Section
@@ -108,20 +97,61 @@ const contacts = [
       extraClassesTitle="border-blackdark"
     >
       <p class="content">
-        My name is <span class="italic bg-blackdark text-whitelight"
-          >Ananda Zulvansyah Putra</span
-        > , and you can call me
-        <span class="font-semibold">Ivan.</span>
-      </p>
-      <p class="content">
-        I'm a web developer who enjoy turning ideas into <span
-          class="bg-blackdark text-whitelight"
-          >functional and user-friendly</span
+        I'm a web developer who enjoy turning ideas into functional and user
+        friendly website. I work primarly with <span
+          class="font-semibold inline-flex items-center gap-x-2"
         >
-        website. I work primarly with <span class="font-semibold">Astro</span
-        >,<span class="font-semibold">Tailwind CSS</span> and <span
-          class="font-semibold">Laravel</span
-        >.
+          Astro <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 100 100"
+            class="w-7 h-7"
+            ><g clip-path="url(#a)"
+              ><path
+                fill="#ff5d01"
+                d="M35.696 85.174c-4.502-4.13-5.816-12.807-3.94-19.093 3.252 3.963 7.758 5.219 12.426 5.927 7.206 1.094 14.283.685 20.977-2.62.766-.378 1.473-.881 2.31-1.39.629 1.827.792 3.674.573 5.552-.534 4.576-2.803 8.111-6.413 10.79-1.443 1.072-2.97 2.03-4.461 3.04-4.58 3.107-5.818 6.749-4.098 12.046.041.13.078.258.17.573-2.338-1.05-4.046-2.578-5.347-4.589-1.375-2.121-2.029-4.468-2.063-7.008-.017-1.236-.017-2.483-.183-3.7-.404-2.97-1.794-4.3-4.412-4.378-2.687-.078-4.812 1.588-5.375 4.213-.043.201-.106.4-.168.634z"
+              ></path><path
+                fill="#000014"
+                d="M10 65.034s13.332-6.517 26.7-6.517l10.08-31.302c.377-1.514 1.48-2.543 2.723-2.543 1.244 0 2.346 1.029 2.723 2.543l10.08 31.302c15.834 0 26.7 6.517 26.7 6.517L66.318 3.008c-.65-1.83-1.746-3.009-3.226-3.009H35.918c-1.48 0-2.532 1.179-3.227 3.009C32.642 3.13 10 65.034 10 65.034"
+              ></path></g
+            ><defs
+              ><clipPath id="a"
+                ><path fill="#fff" d="M0 0h100v100H0z"></path></clipPath
+              ></defs
+            ></svg
+          >
+        </span>,<span class="font-semibold inline-flex items-center gap-x-2">
+          Tailwind CSS
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 100 100"
+            class="w-7 h-7"
+          >
+            <g clip-path="url(#a)"
+              ><path
+                fill="#06b6d4"
+                d="M50 20q-20 0-25 19.994 7.5-9.997 17.5-7.498c3.804.95 6.522 3.71 9.532 6.764 4.902 4.974 10.576 10.731 22.969 10.731q20 0 24.999-19.995-7.5 9.997-17.5 7.5c-3.803-.951-6.521-3.71-9.531-6.765C68.067 25.758 62.392 20 50 20M25 49.991q-20 0-25 19.995 7.5-9.998 17.5-7.498c3.803.952 6.522 3.71 9.532 6.763C31.933 74.225 37.608 79.984 50 79.984q20 0 25-19.995-7.5 9.997-17.5 7.498c-3.803-.95-6.522-3.71-9.532-6.763C43.066 55.75 37.393 49.991 25 49.991"
+              ></path></g
+            ><defs
+              ><clipPath id="a"
+                ><path fill="#fff" d="M0 0h100v100H0z"></path></clipPath
+              ></defs
+            ></svg
+          ></span
+        > and <span class="font-semibold inline-flex items-center gap-x-2"
+          >Laravel
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 100 100"
+            class="w-7 h-7"
+            ><path
+              fill="#ff2d20"
+              d="M98.494 22.485q.054.2.054.406v21.335a1.56 1.56 0 0 1-.782 1.349L79.86 55.885v20.433a1.56 1.56 0 0 1-.777 1.35L41.705 99.184c-.085.049-.179.08-.272.113-.035.012-.068.033-.105.043a1.6 1.6 0 0 1-.797 0c-.043-.012-.082-.035-.123-.05-.085-.032-.175-.059-.256-.106L2.782 77.668A1.56 1.56 0 0 1 2 76.318V12.316q.001-.21.055-.409c.011-.044.039-.085.054-.13.03-.082.057-.165.1-.241.028-.05.071-.091.106-.138.045-.062.086-.127.138-.18.045-.046.103-.079.154-.118.056-.046.107-.097.171-.134h.002L21.466.208a1.56 1.56 0 0 1 1.555 0l18.686 10.758h.004c.062.04.115.088.171.133.05.038.107.073.152.116.054.056.093.12.14.183.033.047.078.087.105.138.044.078.07.16.1.241.017.045.044.086.055.132q.054.2.055.407V52.29l15.57-8.966V22.89c0-.136.02-.274.055-.404.014-.047.039-.087.055-.132.03-.082.058-.166.1-.241.03-.05.073-.092.106-.138.046-.063.085-.127.14-.181.044-.045.1-.078.151-.117.059-.047.11-.097.171-.134h.002l18.688-10.759a1.56 1.56 0 0 1 1.556 0l18.686 10.759c.066.039.116.087.174.132.05.04.106.074.15.117.055.056.093.12.14.183.035.046.078.087.105.138.045.076.07.16.101.24.018.046.043.086.055.133m-3.06 20.84v-17.74l-6.54 3.764-9.034 5.201v17.74l15.575-8.965zM76.746 75.418V57.665l-8.885 5.075-25.375 14.482v17.92zM5.115 15.008v60.41L39.372 95.14V77.224L21.476 67.096l-.006-.004-.008-.004c-.06-.035-.11-.086-.167-.128-.049-.04-.105-.07-.148-.113l-.004-.006c-.05-.049-.085-.109-.128-.163-.04-.053-.086-.097-.117-.152l-.002-.006c-.035-.058-.056-.128-.082-.194-.025-.059-.058-.113-.073-.175v-.002c-.02-.074-.024-.152-.032-.228-.007-.058-.023-.116-.023-.175V23.974l-9.032-5.203-6.539-3.76zm17.13-11.654L6.678 12.316l15.565 8.962 15.567-8.964-15.567-8.96zm8.097 55.93 9.032-5.2V15.009l-6.54 3.764-9.033 5.201V63.05zM78.305 13.93l-15.567 8.96 15.567 8.962L93.87 22.89zm-1.558 20.62-9.033-5.201-6.54-3.765v17.741l9.032 5.2 6.541 3.766zm-35.82 39.98 22.834-13.036 11.413-6.514-15.555-8.956-17.91 10.311-16.323 9.398z"
+            ></path></svg
+          >
+        </span>.
       </p>
 
       <svg
@@ -134,7 +164,7 @@ const contacts = [
         stroke-width="12"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="hidden lg:block ml-auto text-blackdark"
+        class="w-[150px] h-[150px] lg:w-[250px] lg:h-[250px] ml-auto text-blackdark"
       >
         <circle cx="128" cy="128" r="96"></circle>
         <line x1="37.47" y1="96" x2="218.53" y2="96"></line>
@@ -147,30 +177,33 @@ const contacts = [
     </Section>
 
     <!-- Skills -->
-    <Section
-      title="Skills & Tools"
-      id="skills"
-      extraClasses="bg-blackdark text-whitelight"
-      extraClassesTitle="border-whitelight"
-    >
-      {
-        skillsAndTools.map((s) => (
-          <div class="duration-300 transition-transform hover:translate-x-5 hover:bg-blackdark/20">
-            <p class="content">{s}</p>
-            <hr />
-          </div>
-        ))
-      }
-    </Section>
+    <div class="bg-blackdark text-whitelight">
+      <Section
+        title="Skills & Tools"
+        id="skills"
+        extraClassesTitle="border-whitelight overflow-hidden"
+      >
+        {
+          skillsAndTools.map((s) => (
+            <div class="duration-300 transition-transform hover:translate-x-5">
+              <p class="content">{s}</p>
+              <hr />
+            </div>
+          ))
+        }
+      </Section>
+    </div>
 
     <!-- Projects -->
 
     <Section
       id="projects"
       title="Projects"
-      extraClasses="top-60 bg-white-light text-blackdark"
+      extraClasses="bg-white-light text-blackdark"
     >
-      <div class="w-full h-auto object-cover grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10">
+      <div
+        class="w-full h-auto object-cover grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10"
+      >
         {
           projects.map((project) => (
             <Card
@@ -179,7 +212,7 @@ const contacts = [
               title={project.data.title}
               description={project.data.description}
             >
-              <div class="grid grid-cols-2 gap-2 lg:gap-3">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-3">
                 <Button
                   href={`/projects/${project.slug}`}
                   variant="secondary"
@@ -209,31 +242,32 @@ const contacts = [
       </div>
     </Section>
 
-    <Section
-      id="contact"
-      title="Get In Touch"
-      subtitle="Feel free to reach out"
-      extraClasses="top-100 bg-blackdark text-whitelight"
-    >
-      <!-- Mobile and Tablet -->
-      <div class="mt-6 space-y-3">
-        {
-          contacts.map((contact) => (
-            <a
-              href={contact.url}
-              target="_blank"
-              class="block text-xl lg:text-2xl after:content-['_↗'] lg:w-fit transition-all duration-300 hover:border-b hover:border-b-whitelight active:border-b-whitelight"
-            >
-              {contact.platform}
-            </a>
-            // <hr/>
-          ))
-        }
-      </div>
+    <div class="bg-blackdark text-whitelight">
+      <Section
+        id="contact"
+        title="Get In Touch"
+        subtitle="Feel free to reach out"
+        extraClasses=""
+      >
+        <!-- Mobile and Tablet -->
+        <div class="mt-6 space-y-3">
+          {
+            contacts.map((contact) => (
+              <a
+                href={contact.url}
+                target="_blank"
+                class="block text-xl lg:text-2xl after:content-['_↗'] lg:w-fit duration-300 transition-transform hover:translate-x-5"
+              >
+                {contact.platform}
+              </a>
+            ))
+          }
+        </div>
 
-      <h1 class="text-6xl lg:text-8xl font-semibold">
-        Ananda Zulvansyah Putra
-      </h1>
-    </Section>
+        <h1 class="text-5xl lg:text-8xl font-semibold">
+          Ananda Zulvansyah Putra
+        </h1>
+      </Section>
+    </div>
   </main>
 </BaseLayout>

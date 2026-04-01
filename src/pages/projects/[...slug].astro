@@ -24,7 +24,9 @@ const { Content } = await render(entry);
 
 <BaseLayout title={entry.data.title}>
   <Header />
-  <main class="px-5 md:px-10 py-5 mt-5 text-blackdark space-y-3">
+  <main
+    class="px-5 md:max-w-3xl lg:max-w-6xl mx-auto mt-10 text-blackdark space-y-3"
+  >
     <a
       href="/"
       class="inline-flex items-center bg-blackdark text-whitelight px-2 py-1.5 gap-2 rounded-sm cursor-pointer"
@@ -39,20 +41,20 @@ const { Content } = await render(entry);
           d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"
         ></path></svg
       >
-      Back to projects</a
+      Back to home</a
     >
     <Image
       src={entry.data.image}
       alt={entry.data.alt}
-      class="rounded mt-2 lg:h-[600px] object-cover"
+      class="rounded my-5 lg:h-[600px] object-cover"
     />
-    <h1 class="text-4xl lg:text-5xl font-semibold mt-5 mb-3">
+    <h1 class="text-4xl lg:text-5xl font-semibold mt-10 mb-3">
       {entry.data.title}
     </h1>
     <h2 class="text-lg lg:text-xl font-inter">{entry.data.description}</h2>
     <div>
       <h3 class="text-3xl font-inter font-medium mt-5 mb-3">Overview</h3>
-      <p class="font-inter">
+      <p class="font-inter font-normal">
         <Content />
       </p>
     </div>
@@ -67,21 +69,21 @@ const { Content } = await render(entry);
           {entry.data.features.map((feature) => <li>{feature}</li>)}
         </ol>
       </div>
-      <div>
+      <!-- <div>
         <h3 class="text-3xl font-medium mt-5 mb-3">Challenges</h3>
         <ol class="list-disc px-5 space-y-2 font-inter">
           {entry.data.challenges?.map((challenge) => <li>{challenge}</li>)}
         </ol>
-      </div>
+      </div> -->
     </section>
-    <section class="grid grid-cols-1">
+    <!-- <section class="grid grid-cols-1">
       <div>
         <h3 class="text-3xl font-medium mt-5 mb-3">Learnings</h3>
         <ol class="list-disc px-5 space-y-2 font-inter">
           {entry.data.learnings?.map((learning) => <li>{learning}</li>)}
         </ol>
       </div>
-    </section>
+    </section> -->
     <section class="lg:w-1/8 grid grid-cols-1 mt-5 font-inter">
       <Button
         href={entry.data.projectURL}

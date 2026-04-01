@@ -1,6 +1,14 @@
 ---
 import "../styles/global.css";
-const { title } = Astro.props;
+// import ogImage from "../images/og-image-sinvois.png";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Freelance Web Developer" } = Astro.props;
+// const ogImageUrl = new URL(ogImage.src, Astro.site);
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -19,11 +27,19 @@ const { title } = Astro.props;
     />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content="Freelance Web Developer" />
+    <meta name="description" content={description} />
     <meta
       name="google-site-verification"
       content="Y3CdGKIC5nYX64ww36RlFgF4RaSy_YcTRZn-ue3Uih8"
     />
+    <meta property="og:title" content={`Sinvois | ${title}`} />
+    <meta property="og:description" content={description} />
+    <!-- <meta property="og:image" content={ogImageUrl} /> -->
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`Sinvois | ${title}`} />
+    <meta name="twitter:description" content={description} />
+    <!-- <meta name="twitter:image" content={ogImageUrl} /> -->
     <title>{title}</title>
   </head>
   <body class="">

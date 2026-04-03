@@ -1,27 +1,18 @@
 ---
 interface Props {
-  title?: string;
-  baseClassesTitle?: string;
-  subtitle?: string;
   id?: string;
-  extraClasses?: string;
-  extraClassesTitle?: string;
+  class?: string;
 }
 
-const { title, subtitle, id, extraClasses, extraClassesTitle } = Astro.props;
-
-const baseClasses =
-  "min-h-fit lg:min-h-screen space-y-1.5 max-w-xs md:max-w-3xl lg:max-w-6xl mx-auto py-20 overflow-y-auto";
-const baseClassesTitle = "text-3xl lg:text-5xl font-semibold mb-2";
+const { id, class: className } = Astro.props;
 ---
 
-<section class:list={[baseClasses, extraClasses]} id={id}>
-  <h1 class:list={[baseClassesTitle, extraClassesTitle]}>
-    {title}
-  </h1>
-  <h2 class="mt-4 text-3xl">{subtitle}</h2>
-
-  <div class="mt-3 space-y-3">
-    <slot />
-  </div>
+<section
+  id={id}
+  class:list={[
+    "border-t border-primary/20 pt-6 pb-16 md:pt-8 md:pb-20",
+    className,
+  ]}
+>
+  <slot />
 </section>

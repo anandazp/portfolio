@@ -1,96 +1,197 @@
 ---
 import type { GetStaticPaths } from "astro";
-import { getCollection } from "astro:content";
-import { render } from "astro:content";
-
+import { getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
-import MiniCard from "../../components/ui/MiniCard.astro";
+import Section from "../../components/Section.astro";
 import Button from "../../components/ui/Button.astro";
-import { Image } from "astro:assets";
 
 export const getStaticPaths = (async () => {
   const projects = await getCollection("projects");
+  const sorted = projects.sort((a, b) => b.data.order - a.data.order);
 
-  return projects.map((entry) => ({
+  return sorted.map((entry, i) => ({
     params: { slug: entry.slug },
-    props: { entry },
+    props: {
+      entry,
+      prev: sorted[i + 1] ?? null,
+      next: sorted[i - 1] ?? null,
+    },
   }));
 }) satisfies GetStaticPaths;
 
-const { entry } = Astro.props;
+const { entry, prev, next } = Astro.props;
 const { Content } = await render(entry);
+const year = entry.data.date.getFullYear();
 ---
 
-<BaseLayout title={entry.data.title}>
+<BaseLayout
+  title={`${entry.data.name} — Ananda Zulvansyah Putra`}
+  description={entry.data.description}
+>
   <Header />
-  <main
-    class="px-5 md:max-w-3xl lg:max-w-6xl mx-auto mt-10 text-blackdark space-y-3"
-  >
-    <a
-      href="/"
-      class="inline-flex items-center bg-blackdark text-whitelight px-2 py-1.5 gap-2 rounded-sm cursor-pointer"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="#eceff4"
-        viewBox="0 0 256 256"
-        ><path
-          d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"
-        ></path></svg
+  <main class="max-w-6xl mx-auto px-5 md:px-8">
+    <!-- Hero -->
+    <section class="py-16 md:py-24">
+      <h1
+        class="font-heading font-medium text-xl md:text-2xl lg:text-3xl text-primary leading-tight"
       >
-      Back to home</a
-    >
-    <Image
-      src={entry.data.image}
-      alt={entry.data.alt}
-      class="rounded my-5 lg:h-[600px] object-cover"
-    />
-    <h1 class="text-4xl lg:text-5xl font-semibold mt-10 mb-3">
-      {entry.data.title}
-    </h1>
-    <h2 class="text-lg lg:text-xl font-inter">{entry.data.description}</h2>
-    <div>
-      <h3 class="text-3xl font-inter font-medium mt-5 mb-3">Overview</h3>
-      <p class="font-inter font-normal">
-        <Content />
+        {entry.data.name}
+      </h1>
+    </section>
+
+    <!-- Image -->
+    <div class="border border-primary/20 rounded-sm overflow-hidden">
+      <Image
+        src={entry.data.image}
+        alt={entry.data.name}
+        class="w-full object-cover"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+
+    <!-- Overview -->
+    <Section>
+      <div class="grid md:grid-cols-2 gap-10 md:gap-16">
+        <div class="space-y-6">
+          <h2 class="project-section-title">Overview</h2>
+          <div class="text-secondary leading-relaxed prose prose-sm max-w-none">
+            <Content />
+          </div>
+          {
+            entry.data.liveUrl && (
+              <Button
+                href={entry.data.liveUrl}
+                target="_blank"
+                label="See Site"
+                variant="secondary"
+              />
+            )
+          }
+        </div>
+
+        <div class="space-y-6">
+          {
+            entry.data.contributions && entry.data.contributions.length > 0 && (
+              <div>
+                <p class="project-section-title mb-2">What I Do</p>
+                <ul class="space-y-1">
+                  {entry.data.contributions.map((c) => (
+                    <li class="text-secondary">— {c}</li>
+                  ))}
+                </ul>
+              </div>
+            )
+          }
+          <div>
+            <p class="project-section-title mb-2">Year</p>
+            <p class="text-secondary">{year}</p>
+          </div>
+          <div>
+            <p class="project-section-title mb-2">Tech</p>
+            <div class="flex flex-wrap gap-3">
+              {
+                entry.data.tech.map((t) => (
+                  <span class="border border-primary/20 rounded-sm px-3 py-1 text-secondary">
+                    {t}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </Section>
+
+    <!-- Prev / Next -->
+    <Section>
+      <div class="flex items-center justify-between">
+        {
+          prev ? (
+            <a
+              href={`/projects/${prev.slug}`}
+              class="flex items-center gap-2 text-sm font-heading text-secondary hover:text-primary transition-colors duration-200 group"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 256 256"
+                class="transition-transform duration-200 group-hover:-translate-x-1"
+              >
+                <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z" />
+              </svg>
+              Previous Project
+            </a>
+          ) : (
+            <span />
+          )
+        }
+
+        {
+          next ? (
+            <a
+              href={`/projects/${next.slug}`}
+              class="flex items-center gap-2 text-sm font-heading text-secondary hover:text-primary transition-colors duration-200 group"
+            >
+              Next Project
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                viewBox="0 0 256 256"
+                class="transition-transform duration-200 group-hover:translate-x-1"
+              >
+                <path d="M32,128a8,8,0,0,1,8-8H196.69l-58.35-58.34a8,8,0,0,1,11.32-11.32l72,72a8,8,0,0,1,0,11.32l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40A8,8,0,0,1,32,128Z" />
+              </svg>
+            </a>
+          ) : (
+            <span />
+          )
+        }
+      </div>
+    </Section>
+
+    <!-- Contact -->
+    <Section id="contact">
+      <p class="text-secondary text-sm mb-2">Get in Touch</p>
+      <h2
+        class="font-heading font-semibold text-xl md:text-2xl lg:text-3xl text-primary leading-tight mb-10"
+      >
+        Want to collaborate?
+      </h2>
+      <p class="text-secondary text-sm mb-6">Feel free to reach out</p>
+      <div class="flex flex-wrap gap-x-10 gap-y-2">
+        <a
+          href="mailto:anandazulvansyahputra@gmail.com"
+          class="text-sm text-secondary hover:text-primary transition-colors duration-200 underline underline-offset-4"
+          >email@gmail.com</a
+        >
+        <a
+          href="https://facebook.com/azura.van5"
+          target="_blank"
+          class="text-sm text-secondary hover:text-primary transition-colors duration-200 underline underline-offset-4"
+          >facebook.com/facebook</a
+        >
+        <a
+          href="https://threads.com/@azura.van5"
+          target="_blank"
+          class="text-sm text-secondary hover:text-primary transition-colors duration-200 underline underline-offset-4"
+          >instagram.com/instagram</a
+        >
+      </div>
+    </Section>
+  </main>
+
+  <footer class="border-t border-primary/10 mt-4">
+    <div class="max-w-5xl mx-auto px-5 md:px-8 py-6">
+      <p class="text-secondary/50 text-xs">
+        Copyright {new Date().getFullYear()} Ivan Putra
       </p>
     </div>
-    <h3 class="text-3xl font-medium mt-5 mb-3">Tech Stack</h3>
-    <div class="flex flex-wrap gap-3 font-inter">
-      {entry.data.tech.map((t) => <MiniCard label={t} />)}
-    </div>
-    <section class="grid grid-cols-1 md:grid-cols-2">
-      <div>
-        <h3 class="text-3xl font-medium mt-5 mb-3">Features</h3>
-        <ol class="list-disc px-5 space-y-2 font-inter">
-          {entry.data.features.map((feature) => <li>{feature}</li>)}
-        </ol>
-      </div>
-      <!-- <div>
-        <h3 class="text-3xl font-medium mt-5 mb-3">Challenges</h3>
-        <ol class="list-disc px-5 space-y-2 font-inter">
-          {entry.data.challenges?.map((challenge) => <li>{challenge}</li>)}
-        </ol>
-      </div> -->
-    </section>
-    <!-- <section class="grid grid-cols-1">
-      <div>
-        <h3 class="text-3xl font-medium mt-5 mb-3">Learnings</h3>
-        <ol class="list-disc px-5 space-y-2 font-inter">
-          {entry.data.learnings?.map((learning) => <li>{learning}</li>)}
-        </ol>
-      </div>
-    </section> -->
-    <section class="lg:w-1/8 grid grid-cols-1 mt-5 font-inter">
-      <Button
-        href={entry.data.projectURL}
-        target="_blank"
-        variant="primary"
-        label="Visit Site"
-      />
-    </section>
-  </main>
+  </footer>
 </BaseLayout>

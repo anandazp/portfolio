@@ -4,17 +4,15 @@ const projectsCollection = defineCollection({
   type: "content",
   schema: ({ image }) =>
     z.object({
-      title: z.string(),
+      name: z.string(),
       description: z.string(),
       image: image(),
-      alt: z.string(),
+      date: z.date(),
+      order: z.number(),
       tech: z.array(z.string()),
-      features: z.array(z.string()),
-      learnings: z.array(z.string()).optional(),
-      challenges: z.array(z.string()).optional(),
-      projectURL: z.string().url().optional(),
-      githubURL: z.string().url().optional(),
-      order: z.number().optional(),
+      contributions: z.array(z.string()).optional(),
+      githubUrl: z.string().url().optional(),
+      liveUrl: z.string().url().optional(),
     }),
 });
 

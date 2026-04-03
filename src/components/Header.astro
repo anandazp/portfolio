@@ -1,120 +1,113 @@
 ---
 import Navlink from "./ui/Navlink.astro";
-import Button from "../components/ui/Button.astro";
+import Button from "./ui/Button.astro";
 
 const links = [
   { href: "/#about", label: "About" },
-  { href: "/#projects", label: "Projects" },
+  { href: "/#projects", label: "Work" },
+  { href: "https://azp-blog.pages.dev/", label: "Blog" },
   { href: "/#contact", label: "Contact" },
 ];
 ---
 
-<header
-  class="sticky top-0 z-50 px-7 py-3 md:px-10 lg:px-20 bg-blackdark text-whitelight flex items-center justify-between"
->
-  <a href="/">
-    <h1 class="logo font-medium text-4xl text-center">AZP</h1>
-  </a>
-  <button id="hamburger" class="cursor-pointer lg:hidden" name="hamburger">
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      stroke="currentColor"
-      class="size-9"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+<header class="sticky top-0 z-50 bg-bg border-b border-primary/10">
+  <div
+    class="max-w-6xl mx-auto px-5 md:px-8 h-14 flex items-center justify-between"
+  >
+    <a href="/" class="font-heading font-semibold text-primary text-lg">Ivan</a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-8">
+      {links.map((link) => <Navlink href={link.href} label={link.label} />)}
+    </nav>
+
+    <div class="hidden md:block">
+      <Button
+        href="mailto:anandazulvansyahputra@gmail.com"
+        label="Email Me"
+        target="_blank"
+      />
+    </div>
+
+    <!-- Hamburger -->
+    <button
+      id="hamburger"
+      class="md:hidden cursor-pointer text-primary"
+      aria-label="Open menu"
+      aria-expanded="false"
     >
-      <path d="M4 6H20"></path>
-      <path d="M7 12H20"></path>
-      <path d="M13 18H20"></path>
-    </svg>
-  </button>
+      <svg
+        id="icon-open"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="size-6"
+      >
+        <path d="M4 6H20M7 12H20M13 18H20"></path>
+      </svg>
+      <svg
+        id="icon-close"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="size-6 hidden"
+      >
+        <path d="M18 6L6 18M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
 
   <!-- Mobile Nav -->
   <nav
-    class="lg:hidden fixed top-[56px] left-0 right-0 w-full h-[calc(100vh-64px)]
-           bg-blackdark
-           opacity-0 invisible translate-y-[-10px] pointer-events-none
-           transition-all duration-300 ease-in-out
-           overflow-y-auto"
     id="mobile-nav"
+    class="md:hidden overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out border-t border-primary/10"
   >
-    <div class="flex flex-col justify-start min-h-full pt-16 pb-10 gap-5 px-5">
+    <div class="max-w-5xl mx-auto px-5 py-6 flex flex-col gap-6">
       {links.map((link) => <Navlink href={link.href} label={link.label} />)}
+      <Button
+        href="mailto:anandazulvansyahputra@gmail.com"
+        label="Email Me"
+        target="_blank"
+        extraClasses="w-fit"
+      />
     </div>
   </nav>
-
-  <!-- Desktop Nav -->
-  <nav class="hidden lg:flex items-center gap-14">
-    {links.map((link) => <Navlink href={link.href} label={link.label} />)}
-  </nav>
-
-  <Button
-    href="mailto:anandazulvansyahputra@gmail.com"
-    target="_blank"
-    label="Send Message"
-    extraClasses="hidden! lg:block! bg-whitelight text-blackdark! px-5"
-  />
 </header>
 
 <script>
-  function setupMobileMenu() {
-    const hamburger = document.querySelector("#hamburger");
-    const header = document.querySelector("header");
-    const mobileNav = document.querySelector("#mobile-nav");
-    const links = document.querySelectorAll("#mobile-nav a");
+  function setupMenu() {
+    const hamburger = document.getElementById("hamburger");
+    const mobileNav = document.getElementById("mobile-nav");
+    const iconOpen = document.getElementById("icon-open");
+    const iconClose = document.getElementById("icon-close");
 
     if (!hamburger || !mobileNav) return;
 
-    function openMenu() {
-      mobileNav?.classList.remove(
-        "opacity-0",
-        "invisible",
-        "translate-y-[-10px]",
-        "pointer-events-none"
-      );
-      mobileNav?.classList.add(
-        "opacity-100",
-        "visible",
-        "translate-y-0",
-        "pointer-events-auto"
-      );
+    let open = false;
+
+    function toggle() {
+      open = !open;
+      mobileNav!.style.maxHeight = open ? mobileNav!.scrollHeight + "px" : "0";
+      iconOpen!.classList.toggle("hidden", open);
+      iconClose!.classList.toggle("hidden", !open);
+      hamburger!.setAttribute("aria-expanded", String(open));
     }
 
-    function closeMenu() {
-      mobileNav?.classList.remove(
-        "opacity-100",
-        "visible",
-        "translate-y-0",
-        "pointer-events-auto"
-      );
-      mobileNav?.classList.add(
-        "opacity-0",
-        "invisible",
-        "translate-y-[-10px]",
-        "pointer-events-none"
-      );
-    }
+    hamburger.addEventListener("click", toggle);
 
-    function toggleMenu() {
-      const isHidden = mobileNav?.classList.contains("opacity-0");
-      isHidden ? openMenu() : closeMenu();
-    }
-
-    hamburger?.addEventListener("click", () => {
-      toggleMenu();
-    });
-
-    links?.forEach((link) => {
-      link.addEventListener("click", () => {
-        closeMenu();
+    mobileNav.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => {
+        if (open) toggle();
       });
     });
   }
 
-  setupMobileMenu();
-  // Jalankan function saat load page, karena Astro menggunakan SPA
-  document.addEventListener("astro:page-load", setupMobileMenu);
+  setupMenu();
+  document.addEventListener("astro:page-load", setupMenu);
 </script>

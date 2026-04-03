@@ -2,13 +2,22 @@
 interface Props {
   href: string;
   label: string;
-  extraClasses?: string;
 }
 
-const { href, label, extraClasses } = Astro.props;
-const baseClasses = `inline-block font-inter text-4xl lg:text-xl cursor-pointer
-  relative w-fit after:absolute after:-bottom-1 after:left-0 after:h-[2px] hover:after:w-1/2 after:bg-white after:content-[''] after:transition-all
-  after:duration-300`;
+const { href, label } = Astro.props;
+const currentPath = Astro.url.pathname;
+const isActive =
+  currentPath === href || (href !== "/" && currentPath.startsWith(href));
 ---
 
-<a href={href} class:list={[baseClasses, extraClasses]}>{label}</a>
+<a
+  href={href}
+  class:list={[
+    "font-heading text-base relative after:absolute after:-bottom-0.5 after:left-0 after:h-px after:bg-primary after:transition-all after:duration-300",
+    isActive
+      ? "after:w-full text-primary"
+      : "after:w-0 hover:after:w-full text-secondary",
+  ]}
+>
+  {label}
+</a>

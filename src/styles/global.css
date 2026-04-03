@@ -3,8 +3,6 @@
 @font-face {
   font-family: "Inter Tight";
   src: url("/fonts/inter-tight-semibold.woff2") format("woff2");
-  font-optical-sizing: auto;
-  font-variation-settings: "wdth" 100;
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -13,31 +11,53 @@
 @font-face {
   font-family: "Inter Tight";
   src: url("/fonts/inter-tight-medium.woff2") format("woff2");
-  font-optical-sizing: auto;
-  font-variation-settings: "wdth" 100;
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @theme {
-  --font-inter: "Inter", sans-serif;
-  --font-inter-display: "Inter Display", sans-serif;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
+  --font-heading: "Inter Tight", sans-serif;
+  --font-body: "Inter", sans-serif;
 
-  --color-blacknord: #2e3440;
-  --color-whitenord: #eceff4;
-  --color-blackdark: #141414;
-  --color-whitelight: #fafafa;
-  --color-graynord: #4c566a;
-  --color-accent: #e5e5e5;
+  --color-primary: #14110f;
+  --color-secondary: #353e4d;
+  --color-bg: #f3f3f4;
+
+  /* Golden ratio type scale (base 1rem × 1.618) */
+  --text-xs: 0.618rem; /* ~10px */
+  --text-sm: 0.764rem; /* ~12px */
+  --text-base: 1rem; /* 16px  */
+  --text-lg: 1.618rem; /* ~26px */
+  --text-xl: 2.618rem; /* ~42px */
+  --text-2xl: 4.236rem; /* ~68px */
+  --text-3xl: 6.854rem; /* ~110px */
+}
+
+html {
+  background-color: var(--color-bg);
 }
 
 body {
-  font-family: "Inter Tight", sans-serif;
+  font-family: var(--font-body);
+  color: var(--color-secondary);
+  background-color: var(--color-bg);
 }
 
-.content {
-  @apply font-inter text-2xl lg:text-3xl py-1 lg:leading-12;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--color-primary);
+}
+
+.section-title {
+  @apply font-heading font-medium text-lg md:text-xl text-primary;
+}
+
+.project-section-title {
+  @apply font-heading font-medium text-lg text-primary;
 }

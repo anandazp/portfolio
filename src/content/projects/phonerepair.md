@@ -1,24 +1,16 @@
 ---
-title: "FixnFit"
+name: "FixnFit"
 order: 3
-description: "A landing page for a phone repair service, built with Astro, Tailwind and Decap CMS for content management."
+date: 2025-09-01
+description: "A landing page for a phone repair service with Decap CMS for content management."
 image: "../../images/demo/servishape.webp"
-alt: "FixnFit"
-tech: ["Astro", "Tailwind CSS", "Decap"]
-features:
-  [
-    "Dynamic Content Management : customizable sections managed via Decap CMS.",
-    "Responsive UI : consistent UI that adapts to different devices.",
-    "Automated Deployment : CI/CD pipeline setup via Netlify, triggering auto build upon content updates.",
-  ]
-challenges:
-  [
-    "Bridiging between static data generation and dynamic data from CMS inputs.",
-    "Implementing Netlify Identity for auth in admin panel.",
-  ]
-learnings: ["Integration with git-based headless CMS with Astro."]
-projectURL: "https://fixnfit.netlify.app/"
-githubURL: "https://github.com/anandazp"
+tech: ["Astro", "Tailwind CSS", "Decap CMS"]
+contributions:
+  - "System Design"
+  - "Frontend Development"
+  - "CMS Integration"
+liveUrl: "https://fixnfit.netlify.app/"
+githubUrl: "https://github.com/anandazp"
 ---
 
-This project delivers a blazing-fast, optimized digital presence designed to convert visitors into customers. It empowers the client to manage content directly through a user-friendly admin panel without needing to touch a single line of code.
+A fast, optimized digital presence for a phone repair business. Empowers the client to manage content through a user-friendly admin panel without touching any code.

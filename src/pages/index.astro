@@ -12,20 +12,18 @@ const projects = allProjects
 
 const experiences = [
   {
-    company: "Freelance",
-    position: "Web Developer",
-    startDate: "Jan 2023",
-    endDate: "Present",
-  },
-  {
-    company: "PT. Contoh Digital",
-    position: "Junior Frontend Developer",
-    startDate: "Jun 2022",
-    endDate: "Dec 2022",
+    company: "Methodly",
+    position: "Backend Developer (Intern)",
+    startDate: "Jan 2026",
+    endDate: "Mar 2026",
   },
 ];
 
-const services = ["Web Development", "Landing Page", "CMS Integration"];
+const services = [
+  "01. Web Development",
+  "02. Landing Page",
+  "03. CMS Integration",
+];
 
 const testimonials = [
   {
@@ -57,7 +55,7 @@ const contacts = [
     <!-- Hero -->
     <section class="py-20 md:py-24">
       <h1
-        class="font-heading font-medium text-xl md:text-2xl lg:text-3xl text-primary leading-tight"
+        class="font-heading font-semibold text-xl md:text-2xl lg:text-3xl text-primary leading-tight"
       >
         Ananda <br /> Zulvansyah Putra
       </h1>
@@ -158,19 +156,17 @@ const contacts = [
     </Section>
 
     <!-- Experience -->
-    <!-- <Section id="experience">
-      <div class="grid md:grid-cols-2 gap-10 md:gap-16">
-        <h2 class="font-heading font-semibold text-lg text-primary">
-          Experience
-        </h2>
-        <div class="space-y-6">
+    <Section id="experience">
+      <div class="grid sm:grid-cols-2 gap-10 md:gap-16">
+        <h2 class="section-title">Experience</h2>
+        <div class="space-y-4">
           {
             experiences.map((exp) => (
               <div>
-                <p class="font-heading font-medium text-base text-primary">
+                <p class="font-heading font-medium  md:text-lg text-primary">
                   {exp.company}
                 </p>
-                <p class="text-secondary text-sm">{exp.position}</p>
+                <p class="text-secondary">{exp.position}</p>
                 <p class="text-secondary/60 text-sm mt-0.5">
                   {exp.startDate} – {exp.endDate}
                 </p>
@@ -179,20 +175,18 @@ const contacts = [
           }
         </div>
       </div>
-    </Section> -->
+    </Section>
 
     <!-- Services -->
     <Section id="services">
-      <div class="grid md:grid-cols-2 gap-10 md:gap-16">
+      <div class="grid sm:grid-cols-2 gap-10 md:gap-16">
         <h2 class="section-title">Services</h2>
         <div class="space-y-4">
-          <ul class="list-disc">
-            {
-              services.map((service) => (
-                <li class=" text-xl text-primary">{service}</li>
-              ))
-            }
-          </ul>
+          {
+            services.map((service) => (
+              <p class=" text-lg text-primary">{service}</p>
+            ))
+          }
         </div>
       </div>
     </Section>
@@ -255,10 +249,10 @@ const contacts = [
     </Section>
   </main>
 
-  <footer class="border-t border-primary/10 mt-4">
-    <div class="max-w-5xl mx-auto px-5 md:px-8 py-6">
-      <p class="text-secondary/50 text-xs">
-        Copyright {new Date().getFullYear()} Ivan Putra
+  <footer class="border-t border-primary/10">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 py-6">
+      <p class="text-primary text-xs">
+        Copyright {new Date().getFullYear()} Ananda Zulvansyah Putra
       </p>
     </div>
   </footer>
